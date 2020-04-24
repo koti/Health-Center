@@ -220,7 +220,21 @@ public class HealthCenterFrame extends JFrame {
             themeItems[i] = new JRadioButtonMenuItem(themes[i]);
             themeMenu.add(themeItems[i]);
             themeButtonGroup.add(themeItems[i]);
-            themeItems[i].addActionListener(handler);
+            themeItems[i].addActionListener(
+                    new ActionListener() {
+                        public void actionPerformed(ActionEvent ev3) {
+                            if(themeItems[0].isSelected()) {
+                                getContentPane().setBackground(null);
+                                l1.setForeground(null);
+                                l2.setForeground(null);
+                            }
+                            else if( themeItems[1].isSelected()) {
+                                getContentPane().setBackground(Color.DARK_GRAY);
+                                l1.setForeground(Color.WHITE);
+                                l2.setForeground(Color.WHITE);
+                            }
+                        }
+                    });
         }
         
         themeItems[0].setSelected(true);
@@ -252,17 +266,7 @@ public class HealthCenterFrame extends JFrame {
             String idCheck = customerID.getText();
             String ageCheck = age.getText();
             
-            //Theme selection
-            if(themeItems[0].isSelected()) {
-                getContentPane().setBackground(null);
-                l1.setForeground(null);
-                l2.setForeground(null);
-            }
-            else {
-                getContentPane().setBackground(Color.DARK_GRAY);
-                l1.setForeground(Color.WHITE);
-                l2.setForeground(Color.WHITE);
-            }
+            
             //Trying and catch the input
             try { 
                 int num2 = Integer.parseInt(ageCheck);
